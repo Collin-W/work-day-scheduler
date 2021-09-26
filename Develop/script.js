@@ -1,8 +1,5 @@
 //var hang out spot
-//var currentHour = moment().format('h');
-var currentHour = 1;
-console.log(currentHour);
-console.log(moment().format('h'));
+var currentHour = moment().format('h');
 var hourColor = document.getElementById("div");
 var taskNumber = 0;
 //array
@@ -18,36 +15,32 @@ var freshSeconds = function () {
 //changes colors based on time of work day using military time format in html
 var colorTime = function () {
     $("textarea").each(function () {
+
         var textareaTime = parseInt($(this).attr("id"));
         var currentHourInt = parseInt(currentHour);
         console.log(currentHourInt);
 
 
         //works with 9am-12pm hours
-            if (textareaTime < currentHourInt) {
-                $(this).addClass("past");
-            } else if (currentHourInt === textareaTime) {
-                $(this).addClass("present");
-        
-            } else {
-                $(this).addClass("future");
-            }
+        if (textareaTime < currentHourInt) {
+            $(this).addClass("past");
+        } else if (currentHourInt === textareaTime) {
+            $(this).addClass("present");
+
+        }
 
 
-      //adjusted for 1pm-5pm hours
-        
-            if (textareaTime < currentHourInt + 12) {
-                $(this).addClass("past");
-            } else if (currentHourInt + 12 === textareaTime) {
-                $(this).addClass("present");
-            } else {
-                $(this).addClass("future");
-            }
-        
+        //adjusted for 1pm-5pm hours
+        else if (textareaTime < currentHourInt + 12) {
+            $(this).addClass("past");
+        } else if (currentHourInt + 12 === textareaTime) {
+            $(this).addClass("present");
+        } else {
+            $(this).addClass("future");
+        }
     })
 };
-//} else if  (currentHourInt <= 5 && textareaTime > currentHourInt) {
-                //$(this).addClass("past");
+
 
 //saves the value of the textarea element that the button click function passes, into an empty array with a key of 'task'. The key and its array are located in local storage
 var saveTasks = function (textareaElValue) {
