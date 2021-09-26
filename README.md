@@ -6,6 +6,7 @@
 ## Description:
 - task rows change color based on current hour
 - task values save to local storage on button click
+- date and time dynamically update
 
 
 ## Contributor: 
