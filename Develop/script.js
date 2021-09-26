@@ -21,22 +21,25 @@ var colorTime = function () {
         console.log(currentHourInt);
 
 
-        //works with 9am-12pm hours
-        if (textareaTime < currentHourInt) {
-            $(this).addClass("past");
-        } else if (currentHourInt === textareaTime) {
-            $(this).addClass("present");
+        if (currentHourInt >= 9 && currentHourInt <= 12) {
+            //works with 9am-12pm hours
+            if (textareaTime < currentHourInt) {
+                $(this).addClass("past");
+            } else if (currentHourInt === textareaTime) {
+                $(this).addClass("present");
+            } else {
+                $(this).addClass("future");
+            }
 
-        }
-
-
-        //adjusted for 1pm-5pm hours
-        else if (textareaTime < currentHourInt + 12) {
-            $(this).addClass("past");
-        } else if (currentHourInt + 12 === textareaTime) {
-            $(this).addClass("present");
         } else {
-            $(this).addClass("future");
+            //adjusted for 1pm-5pm hours
+            if (textareaTime < currentHourInt + 12) {
+                $(this).addClass("past");
+            } else if (currentHourInt + 12 === textareaTime) {
+                $(this).addClass("present");
+            } else {
+                $(this).addClass("future");
+            }
         }
     })
 };
