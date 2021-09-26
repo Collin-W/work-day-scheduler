@@ -49,47 +49,48 @@ freshSeconds();
 //listen for event 
 //
 
-var taskArray = [
-    {
-        task:[],
-    }
-];
+var taskArray = [];
 
 var saveTasks = function (a) {
 
     taskNumber++
 
-    taskArray.push(JSON.stringify(a));
+    // taskArray.push(JSON.stringify(a))
+
+   taskArray.push(a);
     //taskArray.push(a);
 
-    for (var i = 0; i < taskArray.length; i++) {
+   // for (var i = 0; i < taskArray.length; i++) {
 
-        console.log(taskArray[i]);
+       // console.log(taskArray[i]);
 
-        var pushedTask = taskArray[i];
+        //var pushedTask = taskArray[i];
         
-        console.log(pushedTask + " this should be defined");
+       // console.log(pushedTask + " this should be defined");
 
-    var storedTasks = localStorage.setItem('task', JSON.stringify(pushedTask[i]));
-    console.log(storedTasks);
+    var storedTasks = localStorage.setItem('task', taskArray);
+    //console.log(storedTasks);
 
 
 
     // if (location.reload()) {}
-      //var retrieveTasks = JSON.parse(localStorage.getItem('task'[i]));
-      var retrieveTasks = localStorage.getItem('task', [i]);
-      console.log(retrieveTasks);
-
-      renderTasks(retrieveTasks)
+      //var retrieveTasks = JSON.parse(localStorage.getItem('task'[taskNumber]));
+    
+      renderTasks()
 
    
-    }
+    //}
 };
 
-function renderTasks(task) {
 
 
-    
+function renderTasks() {
+
+
+    var retrieveTasks = localStorage.getItem('task');
+    console.log(retrieveTasks);
+
+
 }
 
 
@@ -102,8 +103,8 @@ $('button').click(function () {
     //console.log($(this));
     //console.log($(this)[0].parentElement);
     //console.log($(this)[0].parentElement.children[1].value);
-    var textareaValue = $(this)[0].parentElement.children[1].value
-    //console.log(textareaValue);
+    var textareaValue = $(this)[0].parentElement.children[1].value;
+    console.log("clicked value:  "+textareaValue);
 
     //
    $(this).on('click', saveTasks(textareaValue));
@@ -199,3 +200,40 @@ $('button').click(function () {
 
 // welcomeDate.appendChild(currentMoment);
 //var welcomeDate = $("#currentDay").textContent("hello12345");
+
+
+
+
+// var saveTasks = function (a) {
+
+//     taskNumber++
+
+//    // taskArray.push(JSON.stringify(a));
+//     var taskPush = taskArray.push(a);
+//     console.log(taskArray.push(a));
+
+//     //for (var i = 0; i < taskArray.length; i++) {
+
+//         console.log(taskArray[taskNumber]);
+
+//         var pushedTask = taskArray[taskNumber];
+        
+//         console.log(pushedTask + " this should be defined");
+
+//         var storedTasks = localStorage.setItem('task',pushedTask[taskNumber]);
+
+//     //var storedTasks = localStorage.setItem('task', JSON.stringify(pushedTask[taskNumber]));
+//     console.log(JSON.parse(storedTasks));
+
+
+
+//     // if (location.reload()) {}
+//       var retrieveTasks = JSON.parse(localStorage.getItem('task',pushedTask[taskNumber]));
+//       //var retrieveTasks = localStorage.getItem('task', pushedTask[taskNumber]);
+//       console.log(retrieveTasks);
+
+//       renderTasks(retrieveTasks)
+
+   
+//    // }
+// };
