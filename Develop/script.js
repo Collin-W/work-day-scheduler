@@ -1,28 +1,31 @@
 var currentHour = moment().format('h');
 var hourColor = document.getElementById("div");
+var taskNumber = 0;
 
 
-var freshSeconds = function ()  {
-    
+// var taskArray = [
+//     {
+//         task: "value"
+//     }
+// ];
+
+
+
+
+//timer display
+var freshSeconds = function () {
     var dataTime = moment().format('MMMM Do YYYY, h:mm:ss a');
     $("p#currentDay").html(dataTime);
 };
 
-//function saves new task to  local storage
-
-//listen for event 
-//
-
-
-var colorTime = function() {
-
-
-    $("textarea").each(function(){
+//changes colors based on time of work day using military time format in html
+var colorTime = function () {
+    $("textarea").each(function () {
         var textareaTime = parseInt($(this).attr("id"));
 
-        if (textareaTime <currentHour) {
+        if (textareaTime < currentHour) {
             $(this).addClass("past");
-        } else if  (currentHour === textareaTime) {
+        } else if (currentHour === textareaTime) {
             $(this).addClass("present");
         } else {
             $(this).addClass("future");
@@ -30,11 +33,116 @@ var colorTime = function() {
     })
 };
 
-freshSeconds();
 setInterval(freshSeconds, 1000);
-setInterval(colorTime, 20000);
+setInterval(colorTime, 1000);
+freshSeconds();
 
 
+//make array
+//on click grab id and value
+//push this to the end of an array
+//save array to storage then access array
+
+
+//function saves new task to  local storage
+
+//listen for event 
+//
+
+var taskArray = [
+    {
+        task:[],
+    }
+];
+
+var saveTasks = function (a) {
+
+    taskNumber++
+
+    taskArray.push(JSON.stringify(a));
+    //taskArray.push(a);
+
+    for (var i = 0; i < taskArray.length; i++) {
+
+        console.log(taskArray[i]);
+
+        var pushedTask = taskArray[i];
+        
+        console.log(pushedTask + " this should be defined");
+
+    var storedTasks = localStorage.setItem('task', JSON.stringify(pushedTask[i]));
+    console.log(storedTasks);
+
+
+
+    // if (location.reload()) {}
+      //var retrieveTasks = JSON.parse(localStorage.getItem('task'[i]));
+      var retrieveTasks = localStorage.getItem('task', [i]);
+      console.log(retrieveTasks);
+
+      renderTasks(retrieveTasks)
+
+   
+    }
+};
+
+function renderTasks(task) {
+
+
+    
+}
+
+
+
+///var retrieveTasks =JSON.pars(localStorage.getItem('task'));
+
+$('button').click(function () {
+
+    var btnId = $(this).attr('id');
+    //console.log($(this));
+    //console.log($(this)[0].parentElement);
+    //console.log($(this)[0].parentElement.children[1].value);
+    var textareaValue = $(this)[0].parentElement.children[1].value
+    //console.log(textareaValue);
+
+    //
+   $(this).on('click', saveTasks(textareaValue));
+});
+
+// var tasksVal = function () {
+//     $('textarea').each(function () {
+//         var textareaId = $(this).attr('id');
+//         textareaValue = $(this).val();
+//         //need an event to save value on click
+//         console.log(textareaValue);
+//         console.log(textareaId);
+//     });
+// };
+
+// tasksVal();
+
+
+
+
+
+
+// $('textarea').each(function(index, value) {
+//     console.log(`textarea${index}: ${this.id}`);
+//   });
+
+//need a btn that can listen to all the elements for my task storage
+
+//     //var taskId = parseInt($(this).attr("id"));
+//     var taskValue = $(this).attr('value');
+
+//    var taskEvent = $(this).on.click.data;
+
+//     if (taskEvent) {
+//         var storedTasks = localStorage.setItem("task", taskValue);
+//     console.log(storedTasks)
+//     } else {
+//         return;
+//     }
 
 
 
